@@ -75,7 +75,7 @@ class TasksScreen extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () => taskProvider.toggleExpandTask(index),
-                    child: AnimatedContainer(
+                    child: AnimatedContainer( //ss
                       duration: Duration(milliseconds: 300),
                       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       padding: EdgeInsets.all(10),
