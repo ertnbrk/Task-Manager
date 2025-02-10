@@ -1,0 +1,21 @@
+# Flutter
+mobile/.dart_tool/
+mobile/.idea/
+mobile/build/
+mobile/.vscode/
+mobile/pubspec.lock
+
+# .NET Core
+backend/bin/
+backend/obj/
+backend/.vs/
+backend/*.user
+backend/appsettings.json  # Eğer gizli bilgileri içeriyorsa
+backend/appsettings.Development.json
+
+# Genel gereksiz dosyalar
+**/*.log
+*.swp
+.DS_Store
+*.bak
+*.tmp
