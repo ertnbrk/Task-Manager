@@ -22,6 +22,9 @@ class Task {
   @HiveField(5)
   bool isExpanded;
 
+  @HiveField(6)  // ✅ New Field for Due Date
+  DateTime? dueDate;
+
   Task({
     required this.id,
     required this.title,
@@ -29,6 +32,7 @@ class Task {
     this.isCompleted = false,
     required this.createdAt,
     this.isExpanded = false,
+    this.dueDate,  // ✅ New Optional Due Date
   });
 
   /// ✅ Convert Task to JSON (For API communication)
@@ -39,6 +43,7 @@ class Task {
         "isCompleted": isCompleted,
         "createdAt": createdAt.toIso8601String(),
         "isExpanded": isExpanded,
+        "dueDate": dueDate?.toIso8601String(),  // ✅ Handle optional dueDate
       };
 
   /// ✅ Create Task from JSON (For API communication)
@@ -49,5 +54,6 @@ class Task {
         isCompleted: json["isCompleted"] ?? false,
         createdAt: DateTime.parse(json["createdAt"]),
         isExpanded: json["isExpanded"] ?? false,
+        dueDate: json["dueDate"] != null ? DateTime.parse(json["dueDate"]) : null, // ✅ Handle nullable dueDate
       );
 }

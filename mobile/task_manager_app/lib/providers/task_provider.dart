@@ -16,6 +16,11 @@ class TaskProvider extends ChangeNotifier {
     _tasks = await _taskService.loadTasks();
     notifyListeners();  // ✅ Notify UI to update
   }
+  void setTasks(List<Task> tasks) {
+  _tasks = tasks;
+  notifyListeners();  // ✅ Ensures UI updates
+}
+
 
   void addTask(String title, String description) {
     final newTask = Task(
