@@ -14,11 +14,11 @@ class TaskProvider extends ChangeNotifier {
 
   void loadTasks() async {
     _tasks = await _taskService.loadTasks();
-    notifyListeners();  // ✅ Notify UI to update
+    notifyListeners(); 
   }
   void setTasks(List<Task> tasks) {
   _tasks = tasks;
-  notifyListeners();  // ✅ Ensures UI updates
+  notifyListeners();  
 }
 
 
@@ -31,7 +31,7 @@ class TaskProvider extends ChangeNotifier {
     );
     _tasks.add(newTask);
     _taskService.saveTasks(_tasks);
-    notifyListeners();  // ✅ Update UI
+    notifyListeners(); 
   }
 
   void toggleTaskCompletion(int index) {

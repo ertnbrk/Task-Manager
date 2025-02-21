@@ -1,18 +1,19 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'auth_service.dart'; // ✅ Import AuthService to get the token
+import 'auth_service.dart'; 
 
 class ApiService {
   static const String baseUrl = "http://10.0.2.2:5270/api/tasks";
 
-  /// ✅ Fetch tasks with authentication
+  ///  Fetch tasks with authentication
   static Future<List<dynamic>> fetchTasks() async {
     String? token = await AuthService.getToken();
     final response = await http.get(
       Uri.parse(baseUrl),
       headers: {"Authorization": "Bearer $token"},
     );
-
+      print("📡 API Response Status: ${response.statusCode}");
+      print("📡 API Response Body: ${response.body}");
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -20,9 +21,8 @@ class ApiService {
     }
   }
 
-  /// ✅ Add a new task
+  ///  Add a new task
   static Future<bool> addTask(String title, String description, DateTime? dueDate) async {
-    // Token al
     String? token = await AuthService.getToken();
 
     if (token == null || token.isEmpty) {
@@ -30,18 +30,17 @@ class ApiService {
       return false;
     }
 
-    // İstek başlığı
+    
     final headers = {
       "Authorization": "Bearer $token",
       "Content-Type": "application/json",
     };
 
-    // Gönderilecek veri
     final body = jsonEncode({
       "title": title,
       "description": description,
       "isCompleted": false,
-      "dueDate": dueDate?.toUtc().toIso8601String(), // ✅ Convert DateTime to UTC
+      "dueDate": dueDate?.toUtc().toIso8601String(), //  Convert DateTime 
 
     });
 
@@ -66,7 +65,7 @@ class ApiService {
     }
   }
 
-  /// ✅ Delete a task
+  ///  Delete a task
   static Future<bool> deleteTask(String id) async {
     String? token = await AuthService.getToken();
     final response = await http.delete(

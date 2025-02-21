@@ -55,7 +55,7 @@ class _TaskInputWidgetState extends State<TaskInputWidget> {
           ),
           SizedBox(height: 10),
 
-          /// 📌 Tarih Seçme Butonu
+          ///  Tarih Seçme Butonu
           InkWell(
             onTap: () => _selectDate(context),
             child: InputDecorator(
@@ -66,7 +66,7 @@ class _TaskInputWidgetState extends State<TaskInputWidget> {
               ),
               child: Text(
                 _selectedDate != null
-                    ? DateFormat.yMMMMd().format(_selectedDate!) // 📌 Telefonun tarih formatına uyar
+                    ? DateFormat.yMMMMd().format(_selectedDate!) //  Telefonun tarih formatına uyarlamak
                     : "Tap to select date",
                 style: TextStyle(fontSize: 16),
               ),
@@ -81,7 +81,7 @@ class _TaskInputWidgetState extends State<TaskInputWidget> {
                 widget.onTaskAdded(
                   _taskController.text,
                   _descriptionController.text.isNotEmpty ? _descriptionController.text : "",
-                  _selectedDate ?? DateTime.now(), // 📌 Eğer tarih seçilmezse, bugünün tarihi
+                  _selectedDate ?? DateTime.now(), //  Eğer tarih seçilmezse, bugünün tarihi
                 );
                 _taskController.clear();
                 _descriptionController.clear();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:task_manager_app/widgets/menu_drawer.dart';
 import '../providers/task_provider.dart';
 import '../models/task_model.dart';
 import '../services/api_service.dart';
@@ -43,14 +44,14 @@ class _TasksScreenState extends State<TasksScreen> {
       bool success = await ApiService.addTask(
         _taskController.text,
         _descriptionController.text.isEmpty ? "" : _descriptionController.text,
-        _selectedDueDate, // ✅ Ensure dueDate is included
+        _selectedDueDate, 
       );
 
       if (success) {
-        _loadTasks(); // ✅ Reload tasks after adding
+        _loadTasks(); 
         _taskController.clear();
         _descriptionController.clear();
-        setState(() => _selectedDueDate = null); // ✅ Reset date picker
+        setState(() => _selectedDueDate = null); //  Reset date picker
       }
     }
   }
@@ -68,9 +69,9 @@ Color _getTaskColor(DateTime? dueDate) {
   DateTime taskDate = DateTime(dueDate.year, dueDate.month, dueDate.day);
 
   if (taskDate.isBefore(today)) {
-    return Colors.red.withOpacity(0.2); // 🔴 Overdue (past date)
+    return Colors.red.withOpacity(0.2); // Overdue (past date)
   } else if (taskDate.isAtSameMomentAs(today)) {
-    return Colors.yellow.withOpacity(0.3); // 🟡 Due today
+    return Colors.yellow.withOpacity(0.3); //  Due today
   } else {
     return Colors.white; // Default future tasks
   }
@@ -83,43 +84,9 @@ Color _getTaskColor(DateTime? dueDate) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Tasks"),
-        leading: Builder(
-          builder: (context) => IconButton(
-            icon: Icon(Icons.menu), // ☰ 3 çizgili menü ikonu
-            onPressed: () => Scaffold.of(context).openDrawer(),
-          ),
-        ),
+        
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text(
-                "Menü",
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-            _drawerItem(Icons.home, "Ana Sayfa", () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, "/home");
-            }),
-            _drawerItem(Icons.calendar_today, "Takvim", () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, "/calendar");
-            }),
-            _drawerItem(Icons.task, "Görevler", () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, "/tasks");
-            }),
-            _drawerItem(Icons.settings, "Ayarlar", () {
-              Navigator.pop(context);
-              Navigator.pushNamed(context, "/settings");
-            }),
-          ],
-        ),
-      ),
+       drawer: MenuDrawer(),
       body: Column(
         children: [
           Padding(
@@ -153,7 +120,7 @@ Color _getTaskColor(DateTime? dueDate) {
                         _selectedDueDate == null
                             ? ""
                             : "Due: ${_selectedDueDate!.toLocal()}"
-                                .split('.')[0], // ✅ Show full Date & Time
+                                .split('.')[0], 
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
@@ -287,7 +254,7 @@ Color _getTaskColor(DateTime? dueDate) {
     }
   }
 
-  /// ✅ Menüdeki öğeleri oluşturmak için yardımcı fonksiyon
+  ///  Menüdeki öğeleri oluşturmak için yardımcı fonksiyon
   Widget _drawerItem(IconData icon, String title, VoidCallback onTap) {
     return ListTile(
       leading: Icon(icon),

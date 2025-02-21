@@ -66,12 +66,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 137,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -179,8 +175,7 @@
               "RelativeToolTip": "Controllers\\TaskController.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAqwDEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T22:40:50.726Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-10T22:40:50.726Z"
             },
             {
               "$type": "Document",

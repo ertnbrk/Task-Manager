@@ -10,8 +10,8 @@ import 'providers/task_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();  // ✅ Initialize Hive
-  await Hive.openBox('tasks');  // ✅ Open tasks storage
+  await Hive.initFlutter();  
+  await Hive.openBox('tasks');  
 
   runApp(
     MultiProvider(
@@ -31,13 +31,13 @@ class MyApp extends StatelessWidget {
       title: 'Task Manager',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        brightness: Brightness.light,  // Light Mode
+        brightness: Brightness.light,  
       ),
       darkTheme: ThemeData(
-        brightness: Brightness.dark,  // Dark Mode
+        brightness: Brightness.dark, 
       ),
-      themeMode: ThemeMode.system,  // ✅ Auto-switch based on system settings
-      initialRoute: "/login",  // ✅ Varsayılan olarak Login sayfası açılacak
+      themeMode: ThemeMode.system,  
+      initialRoute: "/login",  
       routes: {
         "/login": (context) => LoginScreen(),
         "/home": (context) => HomeScreen(),
