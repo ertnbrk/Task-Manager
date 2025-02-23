@@ -16,6 +16,7 @@ class _TasksScreenState extends State<TasksScreen> {
   final TextEditingController _taskController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   DateTime? _selectedDueDate;
+  String _filterOption = 'All'; // Default filter option
 
   bool _isLoading = true;
 
@@ -27,7 +28,7 @@ class _TasksScreenState extends State<TasksScreen> {
 
   void _loadTasks() async {
     final taskProvider = Provider.of<TaskProvider>(context, listen: false);
-    
+
     try {
       List<dynamic> fetchedTasks = await ApiService.fetchTasks();
       taskProvider
@@ -44,14 +45,14 @@ class _TasksScreenState extends State<TasksScreen> {
       bool success = await ApiService.addTask(
         _taskController.text,
         _descriptionController.text.isEmpty ? "" : _descriptionController.text,
-        _selectedDueDate, 
+        _selectedDueDate,
       );
 
       if (success) {
-        _loadTasks(); 
+        _loadTasks();
         _taskController.clear();
         _descriptionController.clear();
-        setState(() => _selectedDueDate = null); //  Reset date picker
+        setState(() => _selectedDueDate = null); // Reset date picker
       }
     }
   }
@@ -60,33 +61,46 @@ class _TasksScreenState extends State<TasksScreen> {
     bool success = await ApiService.deleteTask(id);
     if (success) _loadTasks();
   }
-  ///To set color by dueDate
-Color _getTaskColor(DateTime? dueDate) {
-  if (dueDate == null) return Colors.white; // Default background if no due date
+
+  Color _getTaskColor(DateTime? dueDate, BuildContext context) {
+  if (dueDate == null) return Theme.of(context).cardColor; // Default background if no due date
 
   DateTime now = DateTime.now();
-  DateTime today = DateTime(now.year, now.month, now.day); // Remove time part
+  DateTime today = DateTime(now.year, now.month, now.day);
   DateTime taskDate = DateTime(dueDate.year, dueDate.month, dueDate.day);
 
   if (taskDate.isBefore(today)) {
-    return Colors.red.withOpacity(0.2); // Overdue (past date)
+    return Theme.of(context).brightness == Brightness.dark
+        ? Colors.red.withOpacity(0.5)
+        : Colors.red.withOpacity(0.2); // Overdue (past date)
   } else if (taskDate.isAtSameMomentAs(today)) {
-    return Colors.yellow.withOpacity(0.3); //  Due today
+    return Theme.of(context).brightness == Brightness.dark
+        ? Colors.orange.withOpacity(0.5)
+        : Colors.yellow.withOpacity(0.3); // Due today
   } else {
-    return Colors.white; // Default future tasks
+    return Theme.of(context).cardColor; // Default for future tasks
   }
 }
+
 
   @override
   Widget build(BuildContext context) {
     final taskProvider = Provider.of<TaskProvider>(context);
 
+    List<Task> filteredTasks;
+    if (_filterOption == 'Completed') {
+      filteredTasks = taskProvider.tasks.where((task) => task.isCompleted).toList();
+    } else if (_filterOption == 'Incomplete') {
+      filteredTasks = taskProvider.tasks.where((task) => !task.isCompleted).toList();
+    } else {
+      filteredTasks = taskProvider.tasks;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Tasks"),
-        
       ),
-       drawer: MenuDrawer(),
+      drawer: MenuDrawer(),
       body: Column(
         children: [
           Padding(
@@ -120,7 +134,7 @@ Color _getTaskColor(DateTime? dueDate) {
                         _selectedDueDate == null
                             ? ""
                             : "Due: ${_selectedDueDate!.toLocal()}"
-                                .split('.')[0], 
+                                .split('.')[0],
                         style: TextStyle(fontSize: 16),
                       ),
                     ),
@@ -135,6 +149,20 @@ Color _getTaskColor(DateTime? dueDate) {
                   child: const Text("Add Task"),
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 ),
+                SizedBox(height: 10),
+                DropdownButton<String>(
+                  value: _filterOption,
+                  onChanged: (value) {
+                    setState(() {
+                      _filterOption = value!;
+                    });
+                  },
+                  items: [
+                    DropdownMenuItem(value: 'All', child: Text('All Tasks')),
+                    DropdownMenuItem(value: 'Completed', child: Text('Completed Tasks')),
+                    DropdownMenuItem(value: 'Incomplete', child: Text('Incomplete Tasks')),
+                  ],
+                ),
               ],
             ),
           ),
@@ -143,9 +171,9 @@ Color _getTaskColor(DateTime? dueDate) {
             child: _isLoading
                 ? Center(child: CircularProgressIndicator())
                 : ListView.builder(
-                    itemCount: taskProvider.tasks.length,
+                    itemCount: filteredTasks.length,
                     itemBuilder: (context, index) {
-                      final task = taskProvider.tasks[index];
+                      final task = filteredTasks[index];
 
                       return Dismissible(
                         key: Key(task.id),
@@ -165,7 +193,7 @@ Color _getTaskColor(DateTime? dueDate) {
                                 vertical: 5, horizontal: 10),
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color:_getTaskColor(task.dueDate),
+                              color: _getTaskColor(task.dueDate, context),
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
                                 BoxShadow(
@@ -231,7 +259,7 @@ Color _getTaskColor(DateTime? dueDate) {
       context: context,
       initialDate: now,
       firstDate: now,
-      lastDate: now.add(Duration(days: 365)), // 1 year ahead
+      lastDate: now.add(Duration(days: 365)),
     );
 
     if (pickedDateTime != null) {
@@ -252,14 +280,5 @@ Color _getTaskColor(DateTime? dueDate) {
         });
       }
     }
-  }
-
-  ///  Menüdeki öğeleri oluşturmak için yardımcı fonksiyon
-  Widget _drawerItem(IconData icon, String title, VoidCallback onTap) {
-    return ListTile(
-      leading: Icon(icon),
-      title: Text(title),
-      onTap: onTap,
-    );
   }
 }

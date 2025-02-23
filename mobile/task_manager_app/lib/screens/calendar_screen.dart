@@ -4,11 +4,8 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:task_manager_app/screens/tasks_screen.dart';
 import 'package:task_manager_app/widgets/menu_drawer.dart';
-import 'package:timezone/data/latest.dart' as tz;
 import '../providers/task_provider.dart';
 import '../models/task_model.dart';
-import 'package:timezone/data/latest.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -30,15 +27,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
     _initializeNotifications();
   }
 
-  void _loadTasks() {
-    final taskProvider = Provider.of<TaskProvider>(context, listen: false);
+ void _loadTasks() {
+  final taskProvider = Provider.of<TaskProvider>(context, listen: false);
   _tasksByDate.clear();
 
   for (var task in taskProvider.tasks) {
     if (task.dueDate != null) {
       DateTime normalizedDate = DateTime(task.dueDate!.year, task.dueDate!.month, task.dueDate!.day);
-      print("📌 Normalized Date: $normalizedDate"); // ✅ Debugging
-
+      print("📌 Normalized Date: $normalizedDate"); 
+      print("🔹 Task Title: ${task.title}");
+      
       if (_tasksByDate[normalizedDate] == null) {
         _tasksByDate[normalizedDate] = [];
       }
@@ -46,13 +44,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
     }
   }
 
-  print("✅ Loaded Tasks: $_tasksByDate"); // ✅ Debugging
-  setState(() {}); // Refresh UI
-  }
+  print("✅ Loaded Tasks: $_tasksByDate"); 
+  setState(() {}); 
+}
 
-  /// Bildirimleri ayarla
+
+
   void _initializeNotifications() {
-    tz.initializeTimeZones();
     const AndroidInitializationSettings androidSettings =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
@@ -62,40 +60,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
     flutterLocalNotificationsPlugin.initialize(settings);
   }
 
-  /// Görev zamanı geldiğinde bildirim gönder
-  void _scheduleNotification(Task task) async {
-    final scheduledDate = tz.TZDateTime.from(task.createdAt, tz.local);
-
-    const AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails(
-      'task_notifications', // Kanal ID
-      'Task Notifications', // Kanal Adı
-      importance: Importance.high,
-      priority: Priority.high,
-    );
-
-    const NotificationDetails details =
-        NotificationDetails(android: androidDetails);
-
-    await flutterLocalNotificationsPlugin.zonedSchedule(
-      task.id.hashCode,
-      "Görev Hatırlatma",
-      "Görev: ${task.title}",
-      scheduledDate,
-      details,
-      androidScheduleMode: AndroidScheduleMode
-          .exactAllowWhileIdle, // ✅ Zorunlu parametre eklendi
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Takvim")),
-       drawer: MenuDrawer(),
+      appBar: AppBar(title: Text("Calendar")),
+      drawer: MenuDrawer(),
       body: Column(
         children: [
           /// 🗓 TABLE CALENDAR
@@ -106,12 +75,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
             calendarFormat: _calendarFormat,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             eventLoader: (day) {
-            DateTime normalizedDay = DateTime(day.year, day.month, day.day);
-            print("📅 Checking events for: $normalizedDay");
-            print("📌 Tasks for this day: ${_tasksByDate[normalizedDay] ?? []}");
-            return _tasksByDate[normalizedDay] ?? [];  // ✅ Ensure it returns a list
-          },
-
+              DateTime normalizedDay = DateTime(day.year, day.month, day.day);
+              return _tasksByDate[normalizedDay] ?? [];
+            },
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
                 _selectedDay = selectedDay;
@@ -154,8 +120,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
           /// 📝 TASK LIST BELOW CALENDAR
           Expanded(
-            child: _tasksByDate[_selectedDay] == null ||
-                    _tasksByDate[_selectedDay]!.isEmpty
+            child: _tasksByDate[_selectedDay]?.isEmpty ?? true
                 ? Center(
                     child: ElevatedButton(
                     onPressed: () {
@@ -164,24 +129,19 @@ class _CalendarScreenState extends State<CalendarScreen> {
                         MaterialPageRoute(builder: (context) => TasksScreen()),
                       );
                     },
-                    child: Icon(
-                      Icons.add,
-                      color: const Color.fromARGB(255, 255, 255, 255),
-                    ),
+                    child: Icon(Icons.add, color: Colors.white),
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(
-                              255, 24, 140, 8)), // ✅ HATA DÜZELTİLDİ
+                          Colors.green),
                     ),
                   ))
                 : ListView.builder(
-                    itemCount: _tasksByDate[_selectedDay]!.length,
+                    itemCount: _tasksByDate[_selectedDay]?.length ?? 0,
                     itemBuilder: (context, index) {
                       Task task = _tasksByDate[_selectedDay]![index];
                       return Card(
-                        color: _getTaskColor(task), //  Color based on Due Date
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        color: _getTaskColor(task),
+                        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                         child: ListTile(
                           title: Text(task.title,
                               style: TextStyle(fontWeight: FontWeight.bold)),
@@ -207,40 +167,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
       return Colors.white;
     }
 
-    DateTime dueDate =
-        DateTime(task.dueDate!.year, task.dueDate!.month, task.dueDate!.day);
+    DateTime dueDate = DateTime(task.dueDate!.year, task.dueDate!.month, task.dueDate!.day);
 
     if (dueDate.isBefore(today)) {
-      return Colors.red.shade300; //  Overdue tasks
+      return Colors.red.shade300;
     } else if (dueDate.isAtSameMomentAs(today)) {
-      return Colors.yellow.shade300; //  Due today
+      return Colors.yellow.shade300;
     }
     return Colors.white;
-  }
-
-  List<Widget> _buildEventMarkers(DateTime day, List<dynamic> events) {
-    if (events.isEmpty) return [];
-
-    return events.map((task) {
-      Color markerColor;
-      DateTime today = DateTime.now();
-      DateTime taskDate =
-          DateTime(task.dueDate!.year, task.dueDate!.month, task.dueDate!.day);
-
-      if (taskDate.isBefore(today)) {
-        markerColor = Colors.red; //  Overdue tasks
-      } else if (taskDate.isAtSameMomentAs(today)) {
-        markerColor = Colors.yellow; //  Tasks due today
-      } else {
-        markerColor = Colors.green; //  Future tasks
-      }
-
-      return Container(
-        margin: EdgeInsets.symmetric(horizontal: 1),
-        width: 8,
-        height: 8,
-        decoration: BoxDecoration(color: markerColor, shape: BoxShape.circle),
-      );
-    }).toList();
   }
 }

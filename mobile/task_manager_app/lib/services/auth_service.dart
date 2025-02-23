@@ -31,6 +31,25 @@ class AuthService {
     }
     return false;
   }
+ /// Change password
+  static Future<bool> changePassword(String currentPassword, String newPassword) async {
+    String? token = await AuthService.getToken();
+    final response = await http.post(
+      Uri.parse('$baseUrl/change-password'),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-Type": "application/json"
+      },
+      body: jsonEncode({
+        "currentPassword": currentPassword,
+        "newPassword": newPassword,
+      }),
+    );
+
+    return response.statusCode == 200;
+  }
+
+  
 
   ///  Store JWT Token
   static Future<void> _storeToken(String token) async {
@@ -48,5 +67,69 @@ class AuthService {
   static Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove("jwt_token");
+  }
+
+   /// Get User Profile
+  static Future<Map<String, dynamic>?> getUserProfile() async {
+    String? token = await getToken();
+
+    if (token == null) {
+      print("No token found.");
+      return null;
+    }
+
+    final response = await http.get(
+      Uri.parse('$baseUrl/user'),
+      headers: {"Authorization": "Bearer $token"},
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      print("Failed to fetch user profile. Status code: ${response.statusCode}");
+      return null;
+    }
+  }
+
+  /// Update User Profile
+  static Future<bool> updateUserProfile(String name, String email, String phone) async {
+    String? token = await getToken();
+
+    if (token == null) {
+      print("No token found.");
+      return false;
+    }
+
+    final response = await http.put(
+      Uri.parse('$baseUrl/user'),
+      headers: {
+        "Authorization": "Bearer $token",
+        "Content-Type": "application/json",
+      },
+      body: jsonEncode({
+        "name": name,
+        "email": email,
+        "phone": phone,
+      }),
+    );
+
+    return response.statusCode == 200;
+  }
+
+  /// Delete User
+  static Future<bool> deleteUser() async {
+    String? token = await getToken();
+
+    if (token == null) {
+      print("No token found.");
+      return false;
+    }
+
+    final response = await http.delete(
+      Uri.parse('$baseUrl/user'),
+      headers: {"Authorization": "Bearer $token"},
+    );
+
+    return response.statusCode == 204;
   }
 }

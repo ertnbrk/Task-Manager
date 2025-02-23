@@ -74,4 +74,20 @@ class ApiService {
     );
     return response.statusCode == 204;
   }
+
+
+   /// Fetch profile data
+  static Future<Map<String, dynamic>> getProfile() async {
+    String? token = await AuthService.getToken();
+    final response = await http.get(
+      Uri.parse('$baseUrl/profile'),
+      headers: {"Authorization": "Bearer $token"},
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception("Failed to load profile");
+    }
+  }
 }
