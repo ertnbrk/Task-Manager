@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\models\\apptask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:models\\apptask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:controllers\\taskcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\models\\apptask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:models\\apptask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\migrations\\20250214140459_addapplicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -43,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|c:\\users\\ertan\\desktop\\lab\\mobileapp\\voiceaiflutter\\backend\\taskmanagerapi\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1273D079-6A18-4C31-BF28-9848102F6809}|TaskManagerAPI.csproj|solutionrelative:models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -66,48 +70,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 137,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAIwC4AAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T22:38:17.194Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "20250214140459_AddApplicationUser.cs",
-              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250214140459_AddApplicationUser.cs",
-              "RelativeDocumentMoniker": "Migrations\\20250214140459_AddApplicationUser.cs",
-              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250214140459_AddApplicationUser.cs",
-              "RelativeToolTip": "Migrations\\20250214140459_AddApplicationUser.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T14:06:38.881Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "AppTask.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Models\\AppTask.cs",
               "RelativeDocumentMoniker": "Models\\AppTask.cs",
               "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Models\\AppTask.cs",
               "RelativeToolTip": "Models\\AppTask.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAiwA8AAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAowA8AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-10T22:36:09.317Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "20250213140640_FixIdentity.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250213140640_FixIdentity.cs",
               "RelativeDocumentMoniker": "Migrations\\20250213140640_FixIdentity.cs",
@@ -119,7 +99,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T08:51:45.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProfileController.cs",
+              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "Controllers\\ProfileController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-23T22:25:58.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "RegisterModel.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Models\\RegisterModel.cs",
               "RelativeDocumentMoniker": "Models\\RegisterModel.cs",
@@ -131,19 +137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAwwG4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T08:51:45.177Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Models\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Models\\ApplicationUser.cs",
@@ -155,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -167,19 +161,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskController.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\TaskController.cs",
               "RelativeDocumentMoniker": "Controllers\\TaskController.cs",
               "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Controllers\\TaskController.cs",
               "RelativeToolTip": "Controllers\\TaskController.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAqwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T22:40:50.726Z"
+              "WhenOpened": "2025-02-10T22:40:50.726Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T22:37:09.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "20250214140459_AddApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250214140459_AddApplicationUser.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250214140459_AddApplicationUser.cs",
+              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250214140459_AddApplicationUser.cs",
+              "RelativeToolTip": "Migrations\\20250214140459_AddApplicationUser.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T14:06:38.881Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAIwC4AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-10T22:38:17.194Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "ApplicationDbContextModelSnapshot.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\ApplicationDbContextModelSnapshot.cs",
               "RelativeDocumentMoniker": "Migrations\\ApplicationDbContextModelSnapshot.cs",
@@ -191,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "20250211153548_InitialCreate.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Migrations\\20250211153548_InitialCreate.cs",
               "RelativeDocumentMoniker": "Migrations\\20250211153548_InitialCreate.cs",
@@ -203,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "LoginModel.cs",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Models\\LoginModel.cs",
               "RelativeDocumentMoniker": "Models\\LoginModel.cs",
@@ -215,19 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-10T22:37:09.482Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "TaskManagerAPI.csproj",
               "DocumentMoniker": "C:\\Users\\ertan\\Desktop\\LAB\\mobileApp\\voiceAIFlutter\\backend\\TaskManagerAPI\\TaskManagerAPI.csproj",
               "RelativeDocumentMoniker": "TaskManagerAPI.csproj",
