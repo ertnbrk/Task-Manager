@@ -156,7 +156,7 @@
     "Parameters": [
       {
         "Name": "model",
-        "Type": "TaskManagerAPI.Controllers.ChangePasswordModel",
+        "Type": "System.Object",
         "IsRequired": true
       }
     ],

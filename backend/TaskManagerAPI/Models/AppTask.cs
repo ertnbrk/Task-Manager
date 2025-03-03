@@ -21,5 +21,7 @@ namespace TaskManagerAPI.Models
         }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public string UserId { get; set; }  // Add this line
+
     }
 }

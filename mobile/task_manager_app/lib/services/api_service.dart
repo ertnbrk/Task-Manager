@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'auth_service.dart'; 
+import 'auth_service.dart';
 
 class ApiService {
   static const String baseUrl = "http://10.0.2.2:5270/api/tasks";
@@ -12,8 +12,8 @@ class ApiService {
       Uri.parse(baseUrl),
       headers: {"Authorization": "Bearer $token"},
     );
-      print("📡 API Response Status: ${response.statusCode}");
-      print("📡 API Response Body: ${response.body}");
+    
+    
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
@@ -30,7 +30,6 @@ class ApiService {
       return false;
     }
 
-    
     final headers = {
       "Authorization": "Bearer $token",
       "Content-Type": "application/json",
@@ -40,8 +39,7 @@ class ApiService {
       "title": title,
       "description": description,
       "isCompleted": false,
-      "dueDate": dueDate?.toUtc().toIso8601String(), //  Convert DateTime 
-
+      "dueDate": dueDate?.toUtc().toIso8601String(),
     });
 
     try {
@@ -75,19 +73,61 @@ class ApiService {
     return response.statusCode == 204;
   }
 
+  /// Get User Profile
+ static Future<Map<String, dynamic>?> getUserProfile() async {
+  String? token = await AuthService.getToken();
 
-   /// Fetch profile data
-  static Future<Map<String, dynamic>> getProfile() async {
+  if (token == null || token.isEmpty) {
+    print("No token found.");
+    return null;
+  }
+
+  final headers = {
+    "Authorization": "Bearer $token",
+    "Content-Type": "application/json",
+  };
+
+  final response = await http.get(
+    Uri.parse('http://10.0.2.2:5270/api/users/user'), // Doğru endpoint
+    headers: headers,
+  );
+
+  print("STATUS: ${response.statusCode}");
+  print("Headers: ${headers}");
+
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    print("Failed to fetch user profile. Status code: ${response.statusCode}");
+    return null;
+  }
+}
+
+
+  /// Update User Profile
+  static Future<bool> updateUserProfile(String name, String email, String phone) async {
     String? token = await AuthService.getToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/profile'),
-      headers: {"Authorization": "Bearer $token"},
+
+    if (token == null) {
+      print("No token found.");
+      return false;
+    }
+
+    final headers = {
+      "Authorization": "Bearer $token",
+      "Content-Type": "application/json",
+    };
+
+    final response = await http.put(
+      Uri.parse('$baseUrl/user'),
+      headers: headers,
+      body: jsonEncode({
+        "name": name,
+        "email": email,
+        "phone": phone,
+      }),
     );
 
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception("Failed to load profile");
-    }
+    return response.statusCode == 200;
   }
 }

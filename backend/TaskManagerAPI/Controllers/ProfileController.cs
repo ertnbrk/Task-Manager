@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using TaskManagerAPI.Models;
 using TaskManagerAPI.Data;
 using System.Threading.Tasks;
+using System.Security.Claims;
 namespace TaskManagerAPI.Controllers
 {
     [Route("api/users")]
@@ -19,10 +20,24 @@ namespace TaskManagerAPI.Controllers
         }
 
         // Get User Profile
+        [Authorize]
         [HttpGet("user")]
         public async Task<IActionResult> GetUserProfile()
         {
-            var userId = User.FindFirst("id")?.Value;
+            // JWT'den kullanıcı kimliğini al
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            foreach (var claim in User.Claims)
+            {
+                Console.WriteLine($"Claim Type: {claim.Type}, Claim Value: {claim.Value}");
+            }
+
+            Console.WriteLine($"User ID from Token: {userId}"); // Loglama
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Unauthorized("User ID not found in token.");
+            }
+
             var user = await _userManager.FindByIdAsync(userId);
 
             if (user == null)
@@ -38,6 +53,8 @@ namespace TaskManagerAPI.Controllers
                 user.PhoneNumber
             });
         }
+
+
 
         // Update User Profile
         [HttpPut("user")]
@@ -67,7 +84,7 @@ namespace TaskManagerAPI.Controllers
 
         // Change User Password
         [HttpPut("change-password")]
-        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordModel model)
+        public async Task<IActionResult> ChangePassword([FromBody] dynamic model)
         {
             var userId = User.FindFirst("id")?.Value;
             var user = await _userManager.FindByIdAsync(userId);
@@ -77,7 +94,7 @@ namespace TaskManagerAPI.Controllers
                 return NotFound("User not found.");
             }
 
-            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+            var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword.ToString(), model.NewPassword.ToString());
 
             if (!result.Succeeded)
             {
@@ -95,7 +112,7 @@ namespace TaskManagerAPI.Controllers
         public string PhoneNumber { get; set; }
     }
 
-    public class ChangePasswordModel
+    public class ChangePasswordRequest
     {
         public string CurrentPassword { get; set; }
         public string NewPassword { get; set; }

@@ -21,10 +21,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _loadProfile() async {
     try {
-      final profileData = await ApiService.getProfile();
+      final profileData = await ApiService.getUserProfile();
+      String? token = await AuthService.getToken();
+      print("JWT Token: $token");
+
       setState(() {
-        _fullName = profileData['fullName'];
-        _email = profileData['email'];
+        _fullName = profileData?['fullName'];
+        _email = profileData?['email'];
         _isLoading = false;
       });
     } catch (e) {

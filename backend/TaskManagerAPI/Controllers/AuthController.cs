@@ -104,39 +104,27 @@ public class AuthController : ControllerBase
 
     private string GenerateJwtToken(ApplicationUser user)
     {
-        if (user == null)
-        {
-            throw new ArgumentNullException(nameof(user), "User object is null in GenerateJwtToken.");
-        }
-
-        var jwtKey = _configuration["Jwt:Key"];
-        if (string.IsNullOrEmpty(jwtKey))
-        {
-            throw new ArgumentNullException("Jwt:Key", "JWT Key is missing from configuration.");
-        }
-
-        Console.WriteLine($"JWT Key from config: {jwtKey}");
-
-        var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
-        var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new Claim(ClaimTypes.NameIdentifier, user.Id) // Important for authentication
-        };
+        new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        new Claim(ClaimTypes.NameIdentifier, user.Id)  // Kullanıcı kimliği burada ekleniyor
+    };
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
             claims: claims,
             expires: DateTime.UtcNow.AddHours(3),
-            signingCredentials: credentials
+            signingCredentials: creds
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
 }
 
 public class ChangePasswordModel

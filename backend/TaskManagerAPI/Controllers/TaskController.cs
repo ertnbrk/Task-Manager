@@ -5,6 +5,7 @@ using TaskManagerAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace TaskManagerAPI.Controllers
 {
@@ -24,6 +25,22 @@ namespace TaskManagerAPI.Controllers
         {
             return await _context.Tasks.ToListAsync();
         }
+        [HttpGet]
+        public async Task<IActionResult> GetTasksByUser()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // Get the user ID from the JWT token
+            if (userId == null)
+            {
+                return Unauthorized(new { message = "UserId is null." });
+            }
+
+            var tasks = await _context.Tasks
+                .Where(t => t.UserId == userId)  // Filter tasks by user ID
+                .ToListAsync();
+
+            return Ok(tasks);
+        }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<AppTask>> GetTask(Guid id)  // ✅ Change "Task" to "AppTask"
